@@ -1,0 +1,73 @@
+# AI Document Organizer - Configuration
+# Edit this file to customize behavior.
+
+# Folder to watch / organize
+target_folder: "./inbox"
+
+# Where organized files land (subfolders are auto-created)
+output_folder: "./organized"
+
+# Scheduling (used with --watch flag)
+schedule:
+  interval_minutes: 5
+
+# SQLite database
+database:
+  path: "./organizer.db"
+
+# Text classification (Hugging Face)
+classifier:
+  model: "facebook/bart-large-mnli"   # zero-shot classification
+  candidate_labels:
+    - invoice
+    - resume
+    - report
+    - contract
+    - presentation
+    - image
+    - spreadsheet
+    - code
+    - unknown
+  confidence_threshold: 0.4           # min score to accept a label
+
+# Image recognition (OpenCV)
+vision:
+  # SSIM threshold below which two images are considered distinct
+  similarity_threshold: 0.90
+  # Labels mapped by dominant color or detected object heuristics
+  scene_labels:
+    - screenshot
+    - photo
+    - diagram
+    - document_scan
+    - other_image
+
+# File handling
+file_handling:
+  skip_hidden: true
+  max_file_size_mb: 100
+  supported_text_extensions:
+    - .txt
+    - .pdf
+    - .docx
+    - .doc
+    - .md
+    - .csv
+    - .xlsx
+    - .pptx
+    - .html
+    - .json
+    - .xml
+  supported_image_extensions:
+    - .jpg
+    - .jpeg
+    - .png
+    - .gif
+    - .bmp
+    - .tiff
+    - .webp
+
+# Logging
+logging:
+  level: INFO
+  file: "./organizer.log"
