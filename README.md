@@ -1,152 +1,264 @@
-# 🤖 AI Document Organizer
+# 📁 AI Document Organizer — Stop Filing. Let AI Do It.
 
-> Automatically sort files in a folder using NLP and computer vision.
+> **Automatically sorts every file in your computer into the right folder — using AI. Zero manual effort.**
 
-![Python](https://img.shields.io/badge/Python-3.11%2B-blue?logo=python)
-![Transformers](https://img.shields.io/badge/HuggingFace-Transformers-yellow?logo=huggingface)
-![OpenCV](https://img.shields.io/badge/OpenCV-4.9%2B-green?logo=opencv)
-![SQLite](https://img.shields.io/badge/SQLite-3-lightgrey?logo=sqlite)
-![License](https://img.shields.io/badge/License-MIT-purple)
-
----
-
-## ✨ Features
-
-| Feature | Details |
-|---|---|
-| **NLP classification** | Zero-shot text classification via `facebook/bart-large-mnli` — no labelled data needed |
-| **Image recognition** | OpenCV heuristics (edge density, color entropy, aspect ratio) to label screenshots, photos, diagrams, and document scans |
-| **Duplicate detection** | Perceptual hashing (pHash) prevents identical images from being copied twice |
-| **SQLite history** | Every scan is logged; already-processed files are skipped on the next run |
-| **Scheduled watching** | `--watch` flag keeps the process alive and rescans every N minutes |
-| **Dry-run mode** | Preview what *would* happen without touching any files |
+[![Python](https://img.shields.io/badge/Python-3.11%2B-blue?logo=python)](https://python.org)
+[![Transformers](https://img.shields.io/badge/HuggingFace-Transformers-yellow?logo=huggingface)](https://huggingface.co)
+[![OpenCV](https://img.shields.io/badge/OpenCV-4.9%2B-green?logo=opencv)](https://opencv.org)
+[![License](https://img.shields.io/badge/License-MIT-purple)](LICENSE)
 
 ---
 
-## 📁 Output Structure
+## 😩 The Problem This Solves
 
-Files are moved into:
+Does your Downloads folder look like this?
 
+```
+Downloads/
+├── invoice_march.pdf
+├── john_doe_cv.docx
+├── screenshot_2024-03-15.png
+├── receipt_lazada.pdf
+├── random_file.pdf
+├── my_photo.jpg
+├── contract_draft_v3.docx
+└── 47 more files...
+```
+
+Every week, files pile up. Finding what you need takes longer and longer.  
+For virtual assistants managing files for clients, this gets out of hand fast.
+
+**The AI Document Organizer watches your folder and sorts everything automatically — while you work on something else.**
+
+---
+
+## ✅ What It Does
+
+Drop files into a watched folder. The AI reads or analyzes each one and moves it to the right place — automatically, on a schedule, forever.
+
+**Before:**
+```
+inbox/ ← dumping ground of chaos
+  ├── invoice_march.pdf
+  ├── john_doe_cv.docx  
+  ├── vacation_photo.jpg
+  ├── error_screenshot.png
+  └── contract_v3.docx
+```
+
+**After (organized automatically):**
 ```
 organized/
-├── invoice/
-│   └── 2024-06/
-│       └── Q2_invoice.pdf
-├── resume/
-│   └── 2024-06/
-│       └── john_doe_cv.docx
-├── photo/
-│   └── 2024-06/
-│       └── vacation.jpg
-├── screenshot/
-│   └── 2024-06/
-│       └── error_msg.png
-└── unknown/
-    └── 2024-06/
-        └── mystery_file.bin
+  ├── invoice/2024-06/
+  │     └── invoice_march.pdf
+  ├── resume/2024-06/
+  │     └── john_doe_cv.docx
+  ├── photo/2024-06/
+  │     └── vacation_photo.jpg
+  ├── screenshot/2024-06/
+  │     └── error_screenshot.png
+  └── contract/2024-06/
+        └── contract_v3.docx
+```
+
+**Zero manual sorting. Zero duplicates. Everything in the right place.**
+
+---
+
+## 📈 Results
+
+- **Eliminates manual file sorting** — set it once, it runs forever on a schedule
+- **Never creates duplicate files** — built-in duplicate detection using image fingerprinting
+- **Handles mixed file types** — PDFs, Word docs, images, spreadsheets, presentations, text files
+- **Skips already-processed files** — won't re-sort what's already been sorted
+- **Preview before it moves anything** — dry-run mode shows what will happen first
+
+---
+
+## 💼 Who This Is For
+
+This tool is perfect for:
+
+- **Virtual assistants** managing file downloads and documents for multiple clients
+- **Remote workers** whose Downloads folder is out of control
+- **Small business owners** who need invoices, contracts, and receipts auto-organized
+- **Freelancers** juggling documents across multiple projects and clients
+
+> **You don't need to touch the code.** Edit one settings file, run one command, done.
+
+---
+
+## 🎬 Demo
+
+▶️ **[Watch it in action — full demo video coming soon]**
+
+*(Video will show: dropping mixed files into the inbox folder → AI classifying each one → files sorted into correct folders automatically)*
+
+---
+
+## ⚙️ How It Works — Plain English
+
+```
+File drops into your watched folder
+         │
+         ▼
+Is it a document? (PDF, Word, Excel, text...)
+   → AI reads the content
+   → Classifies it: invoice / resume / contract / report / etc.
+         │
+Is it an image? (JPG, PNG...)
+   → AI analyzes visual patterns
+   → Classifies it: photo / screenshot / diagram / scan
+         │
+         ▼
+Is this a duplicate of a file already organized?
+   → YES → Skip it, don't create a copy
+   → NO  → Move to organized/<category>/<year-month>/
+         │
+         ▼
+Log it in the database → Next scan, this file is skipped automatically
 ```
 
 ---
 
-## 🚀 Quick Start
+## 🗂️ Categories It Understands
 
-### 1. Clone & install
+The AI can classify files into any of these categories — or you can add your own:
+
+`invoice` · `resume` · `contract` · `report` · `receipt` · `photo` · `screenshot` · `diagram` · `document scan` · `spreadsheet` · `presentation` · `unknown`
+
+---
+
+## 🚀 Setup (Under 10 Minutes)
+
+### Step 1 — Install
 
 ```bash
-git clone https://github.com/yourusername/ai-doc-organizer.git
-cd ai-doc-organizer
-
-python -m venv .venv
-source .venv/bin/activate        # Windows: .venv\Scripts\activate
+git clone https://github.com/jasper-0918/ai-document-organizer.git
+cd ai-document-organizer
 
 pip install -r requirements.txt
 ```
 
-> **CPU-only PyTorch** (lighter install):
-> ```bash
-> pip install torch --index-url https://download.pytorch.org/whl/cpu
-> ```
+> First run downloads the AI model automatically (~1.6 GB). This happens once.
 
-### 2. Configure
+---
 
-Edit `config.yaml`:
+### Step 2 — Configure
+
+Open `config.yaml` and set your folders:
 
 ```yaml
-target_folder: "./inbox"      # folder to scan
-output_folder: "./organized"  # where sorted files land
+target_folder: "./inbox"       # ← folder to watch (drop files here)
+output_folder: "./organized"   # ← where sorted files go
 schedule:
-  interval_minutes: 5         # used with --watch
+  interval_minutes: 5          # ← how often to scan (with --watch mode)
 ```
 
-### 3. Drop some files into `inbox/` and run
+---
+
+### Step 3 — Drop files and run
 
 ```bash
-# One-time scan
+# Sort everything in the inbox folder right now
 python main.py
 
-# Preview without moving anything
+# Preview what WILL happen without moving anything (safe to try first)
 python main.py --dry-run
 
-# Keep watching every 5 minutes
+# Keep watching and sorting every 5 minutes automatically
 python main.py --watch
 
-# Point at a different folder
+# Sort a specific folder (e.g. your Downloads)
 python main.py --folder ~/Downloads
 ```
 
 ---
 
-## ⚙️ How It Works
+## 🔁 Automation Options
 
-```
-File detected
-    │
-    ├─ Text file? (.pdf, .docx, .txt …)
-    │       │
-    │       └─▶ Extract text (pdfplumber / python-docx / plain read)
-    │                   │
-    │                   └─▶ HuggingFace zero-shot classification
-    │                               │
-    │                               └─▶ label + confidence score
-    │
-    └─ Image file? (.jpg, .png …)
-            │
-            └─▶ OpenCV heuristics
-            │       • edge density  → diagram / document_scan
-            │       • color entropy → photo / screenshot
-            │       • aspect ratio  → screenshot
-            │
-            └─▶ pHash duplicate check
-                        │
-                        └─▶ label
-    │
-    ▼
-SQLite upsert  →  move to organized/<label>/<YYYY-MM>/
-```
-
----
-
-## 🧪 Tests
-
+**One-time sort** — run it manually whenever you want to clean up:
 ```bash
-pytest tests/ -v --cov=organizer
+python main.py
 ```
 
-The test suite uses mocks for the HuggingFace pipeline so **no model download is required** to run tests.
+**Continuous auto-sort** — runs in the background, sorts every 5 minutes:
+```bash
+python main.py --watch
+```
+
+**Dry run first** — always recommended before first use, so you can see what it plans to do:
+```bash
+python main.py --dry-run
+```
 
 ---
 
-## 🛠 Tech Stack
+## 🛡️ Smart Features
 
-- **Python 3.11+**
-- **[Transformers](https://github.com/huggingface/transformers)** — `facebook/bart-large-mnli` for zero-shot NLP
-- **[OpenCV](https://opencv.org/)** — image analysis
-- **[SQLite](https://www.sqlite.org/)** — scan history & deduplication
-- **[schedule](https://github.com/dbader/schedule)** — periodic scanning
-- **[pdfplumber](https://github.com/jsvine/pdfplumber)**, **python-docx**, **python-pptx**, **openpyxl** — document parsing
+**Duplicate prevention** — uses perceptual hashing to detect identical images even if they're renamed. Will never sort the same file twice.
+
+**History database** — every processed file is logged. Re-running never touches files that were already sorted.
+
+**Unknown category** — files the AI isn't confident about go into `organized/unknown/` instead of being misplaced. You review those manually.
+
+**Dry-run mode** — see exactly what would move where, without moving anything. Test before committing.
+
+---
+
+## ⚠️ Honest Limitations
+
+- **First run is slow** — the AI model (~1.6 GB) downloads on first use. After that, it loads from your computer.
+- **Accuracy isn't 100%** — unusual or ambiguous files may land in `unknown/` for you to sort manually.
+- **Local only** — runs on your computer, not in the cloud. Files never leave your machine.
+- **Text-heavy files work best** — PDFs and Word docs get better accuracy than generic images.
+
+---
+
+## 🔒 Your Files Stay Private
+
+The AI model runs entirely on your own computer. **No files are uploaded to any cloud service, no data is sent to any external server.**
+
+---
+
+## 🛠️ Technical Details
+
+<details>
+<summary>Click to expand — for the technically curious</summary>
+
+**AI Models Used:**
+- Text classification: `facebook/bart-large-mnli` (zero-shot, no training data needed)
+- Image analysis: OpenCV heuristics (edge density, color entropy, aspect ratio)
+- Duplicate detection: Perceptual hashing (pHash)
+
+**Supported File Types:**
+- Documents: `.pdf`, `.docx`, `.txt`, `.xlsx`, `.pptx`
+- Images: `.jpg`, `.jpeg`, `.png`, `.bmp`, `.gif`, `.webp`
+
+**Tech Stack:**
+- Python 3.11+
+- HuggingFace Transformers
+- OpenCV 4.9+
+- SQLite (history database)
+- schedule (periodic scanning)
+- pdfplumber, python-docx, python-pptx, openpyxl (document parsing)
+
+</details>
+
+---
+
+## 📬 Want This Built for Your Business?
+
+If you have **repetitive file management or workflow tasks** that need automation, I can build a custom solution for you — tailored to your specific folder structure, file types, and business needs.
+
+I specialize in Python automation for businesses and virtual assistants.
+
+👉 **[Connect on LinkedIn](https://www.linkedin.com/in/jasper-john-paitan-11641337b)**
+📧 **jasperjohn.paitan@lsu.edu.ph**
+🏅 **[View Certifications](https://www.credly.com/users/jasper-john-paitan)**
 
 ---
 
 ## 📄 License
 
-MIT — see [LICENSE](LICENSE).
+MIT — free to use and modify.
