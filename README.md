@@ -254,7 +254,7 @@ If you have **repetitive file management or workflow tasks** that need automatio
 I specialize in Python automation for businesses and virtual assistants.
 
 👉 **[Connect on LinkedIn](https://www.linkedin.com/in/jasper-john-paitan-11641337b)**
-📧 **jasperjohn.paitan@lsu.edu.ph**
+📧 **jasper.paitan0918@gmail.com**
 🏅 **[View Certifications](https://www.credly.com/users/jasper-john-paitan)**
 
 ---
