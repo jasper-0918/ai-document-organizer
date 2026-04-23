@@ -91,17 +91,6 @@ This tool is perfect for:
 
 ## 🎬 Demo
 
-<!-- ============================================================
-     VIDEO PLACEHOLDER — Replace with your YouTube video when ready
-     
-     HOW TO UPDATE:
-     1. Upload your demo to YouTube
-     2. Copy your video ID from the URL:
-        https://www.youtube.com/watch?v=  >>>dQw4w9WgXcQ<<<
-     3. Replace BOTH instances of YOUR_VIDEO_ID below with your ID
-     4. Delete these comments
-     ============================================================ -->
-
 > 📽️ **Full demo video coming soon** — will show the tool classifying and sorting mixed files in real time.
 
 [![▶ Watch Demo — AI Document Organizer](https://img.shields.io/badge/▶%20Watch%20Demo-YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/watch?v=YOUR_VIDEO_ID)
